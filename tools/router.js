@@ -9,7 +9,7 @@ const warning = chalk.yellow
  * Handles async functions.
  * @param {function} fn Function executed.
  */
-const asyncMdl = (fn, level = false) => (req, res, next) => {
+const async = (fn, level = false) => (req, res, next) => {
   if (level && (!req.user || !req.user.isAdmin)) {
     return status(res, 403)
   }
@@ -51,7 +51,7 @@ const json = (res, data, label, status) => {
 }
 
 module.exports = {
-  asyncMdl,
+  async,
   status,
   text,
   json

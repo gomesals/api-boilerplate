@@ -13,7 +13,7 @@ const _getAdmin = async (req, res, next) => {
   return ru.text(res, 'hi public admin')
 }
 
-router.route('/').get(ru.asyncMdl(_get))
-router.route('/admin').get(ru.asyncMdl(_getAdmin, true))
+router.route('/').get(ru.async(_get))
+router.route('/admin').get(ru.async(_getAdmin, true))
 
 module.exports = router
