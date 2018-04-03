@@ -9,13 +9,15 @@ const warning = chalk.yellow
  * Handles async functions.
  * @param {function} fn Function executed.
  */
-const asyncMdl = fn => (req, res, next) => {
+const asyncMdl = (fn, level = false) => (req, res, next) => {
+  if (level && (!req.user || !req.user.isAdmin)) {
+    return status(res, 403)
+  }
   Promise.resolve(fn(req, res, next)).catch(err => {
     console.error(error('ASYNC error'), warning(`\n|- ${err}`))
     return next(err)
   })
 }
-
 /**
  * Send status.
  * @param {object} res Res object, provided by express.
