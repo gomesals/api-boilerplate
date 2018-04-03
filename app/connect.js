@@ -16,7 +16,7 @@ const connected = () => {
 
 const errConenection = err => {
   console.log(error(`Error connecting to database: ${now()}`))
-  console.error(warning(`|- ${err}`))
+  console.error(warning(`\n|- ${err}`))
 }
 
 const disconnected = () => {

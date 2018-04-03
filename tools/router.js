@@ -11,7 +11,7 @@ const warning = chalk.yellow
  */
 const asyncMdl = fn => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(err => {
-    console.err(error('ASYNC error'), warning(`|- ${err}`))
+    console.error(error('ASYNC error'), warning(`\n|- ${err}`))
     return next(err)
   })
 }
