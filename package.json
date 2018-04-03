@@ -1,0 +1,9 @@
+{
+  "name": "api-boilerplate",
+  "version": "1.0.0",
+  "description": "Express API Boilerplate",
+  "main": "index.js",
+  "repository": "https://github.com/silvalexandre/api-boilerplate.git",
+  "author": "Alexandre Silva <contato@silvalexandre.com>",
+  "license": "MIT"
+}
