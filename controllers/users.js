@@ -2,6 +2,7 @@
 
 const Users = require('../models/users')
 const rn = require('../tools/rn')
+const password = require('../tools/password')
 
 const find = async (params = '') => {
   try {
@@ -23,6 +24,7 @@ const findOne = async (_id, params = '') => {
 
 const create = async data => {
   try {
+    data.password = password.encrypt(data.password)
     const { _id } = await new Users(data).save()
     return rn.data({ _id }, 201)
   } catch (e) {
