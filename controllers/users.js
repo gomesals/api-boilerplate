@@ -50,4 +50,18 @@ const remove = async _id => {
   }
 }
 
-module.exports = { find, findOne, create, update, remove }
+const login = async user => {
+  user.password = password.encrypt(user.password)
+  try {
+    const data = await Users.findOne(
+      { email: user.email, password: user.password },
+      'name email isAdmin'
+    ).lean()
+    if (!data) return rn.error(403, 'E-mail e/ou senha incorretos.')
+    return rn.data(data)
+  } catch (e) {
+    return rn._catch(e)
+  }
+}
+
+module.exports = { find, findOne, create, update, remove, login }

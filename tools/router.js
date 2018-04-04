@@ -1,6 +1,7 @@
 'use strict'
 
 const chalk = require('chalk')
+const jwt = require('./jwt')
 
 const error = chalk.bold.red
 const warning = chalk.yellow
@@ -88,5 +89,6 @@ module.exports = {
   text,
   json,
   data,
-  updated
+  updated,
+  ...jwt
 }
