@@ -8,8 +8,10 @@ const Users = require('../controllers/users')
 
 const _login = async (req, res, next) => {
   const user = await Users.login(req.body.user)
-  if (!user.isValid) return res.status(user.status).send(user.message)
-  req.user = user.data
+  if (!user.isValid) {
+    return ru.data(res, user)
+  }
+  req.user = user.content
   return next()
 }
 
