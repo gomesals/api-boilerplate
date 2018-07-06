@@ -24,6 +24,12 @@
     "morgan": "^1.9.0"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
     "nodemon": "^1.17.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

@@ -12,6 +12,7 @@ dependencies:
   mongoose: 5.2.1
   morgan: 1.9.0
 devDependencies:
+  cz-conventional-changelog: 2.1.0
   nodemon: 1.17.5
 packages:
   /abbrev/1.1.1:
@@ -390,6 +391,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
+  /conventional-commit-types/2.2.0:
+    dev: true
+    resolution:
+      integrity: sha1-XblXOdbCEqy+e29lahG5QLqmiUY=
   /cookie-parser/1.4.3:
     dependencies:
       cookie: 0.3.1
@@ -441,6 +446,16 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
+  /cz-conventional-changelog/2.1.0:
+    dependencies:
+      conventional-commit-types: 2.2.0
+      lodash.map: 4.6.0
+      longest: 1.0.1
+      right-pad: 1.0.1
+      word-wrap: 1.2.3
+    dev: true
+    resolution:
+      integrity: sha1-L0vHOQ4yROTfKT5ro1Hkx0Cnx2Q=
   /dasherize/2.0.0:
     dev: false
     resolution:
@@ -1279,6 +1294,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-1SfftUVuynzJu5XV2ur4i6VKVFE=
+  /lodash.map/4.6.0:
+    dev: true
+    resolution:
+      integrity: sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=
   /lodash.once/4.1.1:
     dev: false
     resolution:
@@ -1295,6 +1314,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
+  /longest/1.0.1:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
   /lowercase-keys/1.0.1:
     dev: true
     engines:
@@ -1865,6 +1890,12 @@ packages:
       node: '>=0.12'
     resolution:
       integrity: sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
+  /right-pad/1.0.1:
+    dev: true
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha1-jKCMLLtbVedNr6lr9/0aJ9VoyNA=
   /safe-buffer/5.1.1:
     dev: false
     resolution:
@@ -2312,6 +2343,12 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-AUKk6KJD+IgsAjOqDgKBqnYVInM=
+  /word-wrap/1.2.3:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
   /write-file-atomic/2.3.0:
     dependencies:
       graceful-fs: 4.1.11
@@ -2342,6 +2379,7 @@ specifiers:
   chalk: ^2.3.2
   compression: ^1.7.2
   cookie-parser: ^1.4.3
+  cz-conventional-changelog: ^2.1.0
   dotenv: ^6.0.0
   express: ^4.16.3
   express-jwt: ^5.3.1
