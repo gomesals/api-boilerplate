@@ -12,31 +12,31 @@ const _get = async (req, res, next) => {
 }
 const _post = async (req, res, next) => {
   const data = await Users.create(req.body.user)
-  return ru.data(res, data, 'user')
+  return ru.data(res, data, '_id')
 }
 
 const _getOne = async (req, res, next) => {
-  const data = await Users.findOne(req.params.id)
+  const data = await Users.findById(req.params.id)
   return ru.data(res, data, 'user')
 }
 const _put = async (req, res, next) => {
   const data = await Users.update(req.params.id, req.body.user)
-  return ru.updated(res, data, 200)
+  return ru.data(res, data)
 }
 const _delete = async (req, res, next) => {
   const data = await Users.remove(req.params.id)
-  return ru.updated(res, data, 204)
+  return ru.data(res, data)
 }
 
 router
   .route('/')
-  .get(ru.async(_get))
-  .post(ru.async(_post))
+  .get(ru._jwtAuth, ru.async(_get))
+  .post(ru._jwtAuth, ru.async(_post))
 
 router
   .route('/:id')
-  .get(ru.async(_getOne))
-  .put(ru.async(_put))
-  .delete(ru.async(_delete))
+  .get(ru._jwtAuth, ru.async(_getOne))
+  .put(ru._jwtAuth, ru.async(_put))
+  .delete(ru._jwtAuth, ru.async(_delete))
 
 module.exports = router

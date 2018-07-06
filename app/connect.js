@@ -3,45 +3,47 @@
 const chalk = require('chalk')
 const moment = require('moment')
 const mongoose = require('mongoose')
-
-const error = chalk.bold.red
-const warning = chalk.yellow
-const success = chalk.green
+const EventEmitter = require('../tools/event')
 
 const now = () => moment().format()
 
+const stopApp = () => {
+  console.error(now(), chalk.bold.red('App stopped.'))
+  process.exit(1)
+}
+
 const connected = () => {
-  console.log(success(`Mongoose connected: ${now()}`))
+  process.stdout.write(chalk.green('.'))
+  process.stdout.write('\n')
+  console.log(now(), chalk.green('Mongoose connected.'))
+  EventEmitter.emit('database.connected')
 }
 
 const errConenection = err => {
-  console.log(error(`Error connecting to database: ${now()}`))
-  console.error(warning(`\n|- ${err}`))
+  process.stdout.write(chalk.green('.'))
+  process.stdout.write('\n')
+  console.error(now(), chalk.bold.red('Error connecting to database.'))
+  console.error(warning(`  |- ${err}`))
+  stopApp()
 }
 
 const disconnected = () => {
-  console.error(error(`Mongoose disconnected: ${now()}`))
-  console.error(error(`App stopped: ${now()}`))
-  process.exit(1)
+  console.error(now(), chalk.yellow('Mongoose disconnected.'))
+  stopApp()
 }
 
-process.on('SIGINT', () => {
-  console.log(warning(`App stopped: ${now()}`))
-  process.exit(1)
-})
+process.on('SIGINT', stopApp)
 
 module.exports = () => {
-  console.log(success(`App started: ${now()}`))
+  process.stdout.write(now())
+  process.stdout.write(' ')
+  process.stdout.write(chalk.green('Starting app.'))
   if (!process.env.MONGO) {
-    console.error(
-      error(
-        'App initialization failed because it is not possible to connect to the database'
-      ),
-      warning('\n|- Missing: env.MONGO')
-    )
-    process.exit(1)
+    errConenection('Missing: env.MONGO')
+    stopApp()
   }
-  mongoose.connect(process.env.MONGO)
+  process.stdout.write(chalk.green('.'))
+  mongoose.connect(process.env.MONGO, { useNewUrlParser: true })
   mongoose.Promise = global.Promise
   mongoose.connection.on('connected', connected)
   mongoose.connection.on('error', errConenection)
